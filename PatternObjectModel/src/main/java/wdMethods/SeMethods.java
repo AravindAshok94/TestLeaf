@@ -42,7 +42,7 @@ public class SeMethods extends Reporter implements WdMethods{
 	public SeMethods() {
 		prop = new Properties();
 		try {
-			prop.load(new FileInputStream(new File("./src/main/resources/config.properties")));
+			prop.load(new FileInputStream(new File("./src/main/resources/paypal.properties")));
 			sHubUrl = prop.getProperty("HUB");
 			sHubPort = prop.getProperty("PORT");
 			sUrl = prop.getProperty("URL");
@@ -266,16 +266,20 @@ public class SeMethods extends Reporter implements WdMethods{
 		}
 	}
 
-	public void verifySelected(WebElement ele) {
+	public boolean verifySelected(WebElement ele) {
 		try {
 			if(ele.isSelected()) {
 				reportStep("The element "+ele+" is selected","PASS");
+				return true;
 			} else {
 				reportStep("The element "+ele+" is not selected","FAIL");
+				return false;
 			}
 		} catch (WebDriverException e) {
 			reportStep("WebDriverException : "+e.getMessage(), "FAIL");
+			return false;
 		}
+		
 	}
 
 	public void verifyDisplayed(WebElement ele) {

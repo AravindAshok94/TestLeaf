@@ -18,8 +18,8 @@ public abstract class Reporter {
 
 
 	public void startResult() {
-		html = new ExtentHtmlReporter("./reports/result.html");
-		html.setAppendExisting(true);		
+		html = new ExtentHtmlReporter("./reports/paypalresult.html");
+		html.setAppendExisting(false);
 		extent = new ExtentReports();		
 		extent.attachReporter(html);	
 	}
